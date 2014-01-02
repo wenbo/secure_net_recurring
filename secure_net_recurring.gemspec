@@ -1,15 +1,15 @@
 # -*- encoding: utf-8 -*-
 $:.push File.expand_path("../lib", __FILE__)
-require "securenet_net_recurring/version"
+require "secure_net_recurring/version"
 
 Gem::Specification.new do |s|
-  s.name        = "paypal-recurring"
-  s.version     = SecureNetRecurring::Version
+  s.name        = "secure_net_recurring"
+  s.version     = SecureNetRecurring::VERSION
   s.platform    = Gem::Platform::RUBY
   s.authors     = ["wenbo"]
   s.email       = ["yiyun6674@hotmail.com"]
   s.homepage    = "http://rubygems.org/gems/secure_net_recurring"
-  s.summary     = "Standing on the shoulder of gem activemerchant,this gem implements SecureNet's AuthoBill feature"
+  s.summary     = "Standing on the shoulder of gem activemerchant,this gem implements SecureNet's AuthBill feature"
   s.description = s.summary
 
   s.files         = `git ls-files`.split("\n")
