@@ -6,8 +6,9 @@ module ActiveMerchant
 
       class_attribute :recurring_url
 
-      #self.test_url = 'https://certify.securenet.com/API/gateway.svc/webHttp/ProcessTransaction' 
-      self.recurring_url = 'https://gateway.securenet.com/API/data/service.svc/webHttp/AddABAccount' 
+      #self.test_url = 'https://gateway.securenet.com/api/Gateway.svc/webHttp/ProcessTransaction'   this url works.
+      #self.test_url = 'https://gateway.securenet.com/API/Gateway.svc/webHttp/ProcessTransaction' 
+      self.recurring_url = 'https://gateway.securenet.com/API/Gateway.svc/webHttp/AddABAccount' 
 
       def recurring(money, creditcard, options = {})
         recurring_commit(build_recurring_plan_ab(creditcard, options, :recurring, money))
@@ -43,7 +44,6 @@ module ActiveMerchant
         xml = Builder::XmlMarkup.new
 
         xml.tag! 'CUSTOMERID', creditcard.number
-        add_options(xml, creditcard)
         add_installment(xml, creditcard, money)
         add_merchant_key(xml, options) 
         xml.tag! 'PAYMENTID', creditcard.number
@@ -65,6 +65,9 @@ module ActiveMerchant
 
       def add_installment(xml, creditcard, money)
         xml.tag!("INSTALLMENT") do
+          xml.tag! 'CYCLE', 'M'
+          xml.tag! 'DAY', 5 #Integer / 2 
+          xml.tag! 'FREQUENCY', 1 #Integer / 2 
           xml.tag! 'AMOUNT', amount(money) 
           xml.tag! 'AUTOCALC_OPTION', 'A'
           xml.tag! 'BALLOON_AMOUNT', 0
@@ -76,6 +79,9 @@ module ActiveMerchant
 
       def add_recurring(xml, creditcard, money)
         xml.tag!("RECURRING") do
+          xml.tag! 'CYCLE', 'M'
+          xml.tag! 'DAY', 5 #Integer / 2 
+          xml.tag! 'FREQUENCY', 1 #Integer / 2 
           xml.tag! 'AMOUNT', amount(money) 
           xml.tag! 'NOEND_FLAG', 1
         end
