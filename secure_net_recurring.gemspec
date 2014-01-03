@@ -9,7 +9,7 @@ Gem::Specification.new do |s|
   s.authors     = ["wenbo"]
   s.email       = ["yiyun6674@hotmail.com"]
   s.homepage    = "http://rubygems.org/gems/secure_net_recurring"
-  s.summary     = "Standing on the shoulder of gem activemerchant,this gem implements SecureNet's AuthBill feature"
+  s.summary     = "Standing on the shoulder of gem activemerchant,this gem implements SecureNet's AutoBill feature"
   s.description = s.summary
 
   s.files         = `git ls-files`.split("\n")
